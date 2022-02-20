@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Hello, world!</title>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Shared JavaScript -->
+    <script src="assets/js/shared/particles.js"></script>
+    <script src="assets/js/shared/wordcloud2.js"></script>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+		
+    <div class="container">
+			<div class="row mt-3">
+				<div class="col-xl-12 col-md-12 mt-5 mb-5 text-center">
+					<img src="assets/img/logo_light.svg" class="logo" alt="Responsive image">
+				</div>
+      </div>
+      <div class="row">
+        <div id="wordcloud-col" class="col-xl-6 col-md-12">
+          <canvas id="wordcloud" class="float-right"></canvas>
+        </div>
+				<div class="col-xl-6  col-md-12">
+					<div id="contact" class="card">
+						<div class="card-body">
+							<h6 class="card-subtitle mb-2 text-muted">provided by</h6>
+							<p class="card-text">
+								Johannes Seitle <br/>
+								Augsburger Straße 93A <br/>
+								86668 Karlshuld <br/>
+								<br/>
+								<a href="mailto:info@blackfeet-it.de">info@seitle.io</a> <br/>
+								+49 (0) 8454 9625194
+							</p>
+							<a href="imprint.html" class="card-link">Imprint</a>
+						</div>
+					</div>
+				</div>
+		</div>
+
+    <!-- JavaScript -->
+    <script>
+      particlesJS.load('particles-js', 'assets/particles.json')
+    </script>
+
+    <!-- Shared JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="assets/js/shared/wordcloud2.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+      wordcloud = document.getElementById('wordcloud');
+      wordcloud.width = document.getElementById('wordcloud-col').offsetWidth + 20;
+      wordcloud.height = document.getElementById('wordcloud-col').offsetHeight + 20;
+
+      options = {
+        list: [['Cloud', 12], ['Azure', 7], ['Microsoft 365', 7], ['Nextcloud', 8], ['Powershell', 9], ['Docker', 6], ['Kubernetes', 5], ["Cloud Computing", 5], ['Linux', 8], ['Python', 6], ['IT', 8], ['Network', 5], ['Automation', 8]],
+        gridSize: Math.round(12 * wordcloud.width / 1024),
+        weightFactor: function (size) {
+          return Math.pow(size, 2) * wordcloud.width / 1024;
+        },
+        color: function (word, weight) {
+          if (weight === 12 ) {
+            return '#D65780'
+          }
+          else {
+            return '#656E75'
+          };
+        },
+        backgroundColor: 'transparent',
+        drawOutOfBound: false,
+        shrinkToFit: true,
+        rotateRatio: 0.5,
+        rotationSteps: 2,
+        wait: 100,
+        shape: 'square'
+      }
+      WordCloud(wordcloud, options);
+    </script>
+</body>
+</html>

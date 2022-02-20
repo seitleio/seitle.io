@@ -1,21 +1,12 @@
 version: "3"
-volumes:
-  grav-data:
-    driver: local
-    driver_opts:
-      type: none
-      device: $PWD/seitleio
-      o: bind
 
 services:
-  grav:
+  site:
     build: ./
-    ports:
-      - 127.0.0.1:7452:80
+    ports: 
+      - 127.0.0.1:6453:80
     environment:
       - VIRTUAL_PORT=80
       - VIRTUAL_PROTO=http
-      - VIRTUAL_HOST=seitle.io,www.seitle.io
-      - LETSENCRYPT_HOST=seitle.io,www.seitle.io
-    volumes:
-      - grav-data:/var/www/html
+      - VIRTUAL_HOST=seitle.io,www.seitle.io,blackfeet-it.de,www.blackfeet-it.de,wo7ke.de,www.wo7ke.de
+      - LETSENCRYPT_HOST=seitle.io,www.seitle.io,blackfeet-it.de,www.blackfeet-it.de,wo7ke.de,www.wo7ke.de
