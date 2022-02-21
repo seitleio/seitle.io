@@ -40,7 +40,7 @@ body {
 
 .card {
   border-radius: 0;
-  background-color: #282C35;
+  background-color: rgba(40, 44, 53, 0.8);
 }
 
 /* endregion */
