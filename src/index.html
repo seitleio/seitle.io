@@ -26,10 +26,10 @@
 				</div>
       </div>
       <div class="row">
-        <div id="wordcloud-col" class="col-xl-6 col-md-12 mt-md-3">
-          <canvas id="wordcloud" class="float-right"></canvas>
+        <div id="wordcloud-col" class="col-xl-7 col-md-12 mt-xs-4">
+          <canvas id="wordcloud"></canvas>
         </div>
-				<div class="col-xl-6 col-md-12 mt-5">
+				<div class="col-xl-5 col-md-12 mt-5">
 					<div id="contact" class="card">
 						<div class="card-body">
 							<h6 class="card-subtitle mb-2 text-muted">provided by</h6>
@@ -59,32 +59,35 @@
 
     <!-- JavaScript -->
     <script>
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+      }
+
       wordcloud = document.getElementById('wordcloud');
       wordcloud.width = document.getElementById('wordcloud-col').offsetWidth + 20;
       wordcloud.height = document.getElementById('wordcloud-col').offsetHeight + 20;
 
+      wordlist = [
+        'Cloud', 'Azure', 'Microsoft 365', 'Nextcloud', 'Powershell',
+        'Docker', 'Kubernetes', "Cloud Computing", 'Linux', 'Python',
+        'IT', 'Network', 'Automation', 'DevOps', 'Agile', 'CI/CD'
+      ]
+
       options = {
-        list: [
-          ['Cloud', 12], ['Azure', 7], ['Microsoft 365', 7], ['Nextcloud', 8], ['Powershell', 9],
-          ['Docker', 6], ['Kubernetes', 5], ["Cloud Computing", 5], ['Linux', 8], ['Python', 6],
-          ['IT', 8], ['Network', 5], ['Automation', 8], ['DevOps', 7], ['Agile', 6], ['CI/CD', 8]
-        ],
-        gridSize: Math.round(12 * wordcloud.width / 1024),
+        list: wordlist.map(element => {
+              return [element, getRandom(6, 10)]
+        }),
+        gridSize: Math.round(22 * wordcloud.width / 1024),
         weightFactor: function (size) {
           return Math.pow(size, 2) * wordcloud.width / 1024;
         },
         color: function (word, weight) {
-          if (weight === 12 ) {
-            return '#D65780'
-          }
-          else {
-            return '#FFF'
-          };
+          return (getRandom(1, 12) < 6) ? '#D65780' : 'rgba(255, 255, 255, 0.9)'
         },
         backgroundColor: 'transparent',
         drawOutOfBound: false,
         shrinkToFit: true,
-        rotateRatio: 0.5,
+        rotateRatio: 0.6,
         rotationSteps: 2,
         wait: 100,
         shape: 'square'
