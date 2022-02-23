@@ -75,11 +75,11 @@
 
       options = {
         list: wordlist.map(element => {
-              return [element, getRandom(6, 10)]
+              return [element, getRandom(6, 12)]
         }),
-        gridSize: Math.round(22 * wordcloud.width / 1024),
+        gridSize: Math.round(18 * wordcloud.width / 1024),
         weightFactor: function (size) {
-          return Math.pow(size, 2) * wordcloud.width / 1024;
+          return Math.pow(size, 1.8) * wordcloud.width / 1024;
         },
         color: function (word, weight) {
           return (getRandom(1, 12) < 6) ? '#D65780' : 'rgba(255, 255, 255, 0.9)'
